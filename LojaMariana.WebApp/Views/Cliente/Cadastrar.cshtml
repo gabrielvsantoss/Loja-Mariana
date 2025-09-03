@@ -1,0 +1,132 @@
+﻿@model LojaMariana.WebApp.Models.CadastrarClienteViewModel
+
+@{
+    ViewBag.Titulo = "Cadastrar Cliente - Finesie Boutique";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Titulo</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #ffe4e1, #fff0f5);
+        }
+
+        .navbar-custom {
+            background-color: #ffb6c1;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link,
+        .navbar-custom .btn {
+            color: #800040 !important;
+        }
+
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .btn:hover {
+            color: #d63384 !important;
+        }
+
+        .btn-custom {
+            background-color: #ffc0cb;
+            color: #800040;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff99aa;
+            transform: scale(1.05);
+        }
+
+        .form-card {
+            background-color: #ffc0cb;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            margin: 120px auto 50px;
+            box-shadow: 0 10px 25px rgba(255,192,203,0.5);
+        }
+
+        .form-card h2 {
+            color: #800040;
+            font-weight: 800;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-card label {
+            color: #800040;
+            font-weight: 600;
+        }
+
+        .form-card input {
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#">Finesie</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Produto" asp-action="Index">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Venda" asp-action="Index">Vendas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="form-card">
+        <h2>Cadastrar Cliente</h2>
+        <form asp-action="Cadastrar" method="post">
+            <div class="mb-3">
+                <label asp-for="Nome" class="form-label"></label>
+                <input asp-for="Nome" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Telefone" class="form-label"></label>
+                <input asp-for="Telefone" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control"/>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Endereco" class="form-label"></label>
+                <input asp-for="Endereco" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Cadastrar</button>
+        </form>
+    </div>
+
+</body>
+</html>
+

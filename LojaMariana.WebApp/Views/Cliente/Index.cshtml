@@ -1,0 +1,143 @@
+﻿@model List<LojaMariana.Dominio.ModuloCliente.Cliente>
+
+@{
+    ViewBag.Titulo = "Clientes - Finesie Boutique";
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Titulo</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #ffe4e1, #fff0f5);
+        }
+
+        .navbar-custom {
+            background-color: #ffb6c1;
+        }
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .nav-link,
+            .navbar-custom .btn {
+                color: #800040 !important;
+            }
+
+                .navbar-custom .nav-link:hover,
+                .navbar-custom .btn:hover {
+                    color: #d63384 !important;
+                }
+
+        .btn-custom {
+            background-color: #ffc0cb;
+            color: #800040;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #ff99aa;
+                transform: scale(1.05);
+            }
+
+        .container-content {
+            margin-top: 120px; /* para não bater na navbar fixa */
+            margin-bottom: 50px;
+        }
+
+        .clientes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .cliente-card {
+            background-color: #ffc0cb;
+            border-radius: 15px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(255, 192, 203, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+            .cliente-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 25px rgba(255, 192, 203, 0.7);
+            }
+
+            .cliente-card h5 {
+                color: #800040;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+
+            .cliente-card p {
+                color: #800040;
+                font-size: 0.95rem;
+                margin-bottom: 5px;
+            }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-custom shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#">Finesie</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Produto" asp-action="Index">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Venda" asp-action="Index">Vendas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container container-content">
+        <div class="clientes-header">
+            <h2>Clientes</h2>
+            <a href="@Url.Action("Cadastrar","Cliente")" class="btn btn-custom">Cadastrar Cliente</a>
+        </div>
+
+        <div class="row">
+            @foreach (var cliente in Model)
+            {
+                <div class="col-md-4">
+                    <div class="cliente-card">
+                        <h5>@cliente.Nome</h5>
+                        <p><strong>Telefone:</strong> @cliente.Telefone</p>
+                        <p><strong>Email:</strong> @cliente.Email</p>
+                        <p><strong>Endereço:</strong> @cliente.Endereco</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

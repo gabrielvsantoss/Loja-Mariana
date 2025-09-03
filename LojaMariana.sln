@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LojaMariana.Apresentacao", "LojaMariana.Apresentacao", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LojaMariana.Nucleo", "LojaMariana.Nucleo", "{62345A28-2744-42B6-A53D-AC227558F86D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LojaMariana.Infraestrutura", "LojaMariana.Infraestrutura", "{EFDD8113-7848-4770-A171-44A4497323F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaMariana.WebApp", "LojaMariana.WebApp\LojaMariana.WebApp.csproj", "{A73B8673-49DD-488E-A63D-D002BEA92D77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaMariana.Aplicacao", "LojaMariana.Aplicacao\LojaMariana.Aplicacao.csproj", "{7D14706B-3A7D-4627-B2BF-89504632D450}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaMariana.Dominio", "LojaMariana.Dominio\LojaMariana.Dominio.csproj", "{09D9D731-2DA5-4319-9382-6FA03A523F6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaMariana.InfraestruturaEmOrm", "LojaMariana.InfraestruturaEmOrm\LojaMariana.InfraestruturaEmOrm.csproj", "{BA7B4F1F-B496-4180-9B59-B07C1B30743E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A73B8673-49DD-488E-A63D-D002BEA92D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73B8673-49DD-488E-A63D-D002BEA92D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A73B8673-49DD-488E-A63D-D002BEA92D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73B8673-49DD-488E-A63D-D002BEA92D77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D14706B-3A7D-4627-B2BF-89504632D450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D14706B-3A7D-4627-B2BF-89504632D450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D14706B-3A7D-4627-B2BF-89504632D450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D14706B-3A7D-4627-B2BF-89504632D450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D9D731-2DA5-4319-9382-6FA03A523F6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D9D731-2DA5-4319-9382-6FA03A523F6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D9D731-2DA5-4319-9382-6FA03A523F6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D9D731-2DA5-4319-9382-6FA03A523F6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7B4F1F-B496-4180-9B59-B07C1B30743E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7B4F1F-B496-4180-9B59-B07C1B30743E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7B4F1F-B496-4180-9B59-B07C1B30743E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7B4F1F-B496-4180-9B59-B07C1B30743E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A73B8673-49DD-488E-A63D-D002BEA92D77} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{7D14706B-3A7D-4627-B2BF-89504632D450} = {62345A28-2744-42B6-A53D-AC227558F86D}
+		{09D9D731-2DA5-4319-9382-6FA03A523F6C} = {62345A28-2744-42B6-A53D-AC227558F86D}
+		{BA7B4F1F-B496-4180-9B59-B07C1B30743E} = {EFDD8113-7848-4770-A171-44A4497323F4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {161E7402-1E99-4209-8604-B40B82606335}
+	EndGlobalSection
+EndGlobal
