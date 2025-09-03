@@ -11,6 +11,7 @@ using LojaMariana.InfraestruturaEmOrm.ModuloProduto;
 using LojaMariana.Aplicacao.ModuloCliente;
 using LojaMariana.Dominio.Compartilhado;
 using LojaMariana.Infraestrutura.Orm.Compartilhado;
+using LojaMariana.Aplicacao.ModuloProduto;
 namespace Duobingo.WebApp;
 
 public class Program
@@ -26,10 +27,12 @@ public class Program
         });
 
         builder.Services.AddScoped<IUnitOfWork>(provider => provider.GetRequiredService<lojaMarianaDbContext>());
+
         builder.Services.AddScoped<IRepositorioCliente, RepositorioClienteEmOrm>();
         builder.Services.AddScoped<IRepositorioProduto, RepositorioProdutoEmOrm>();
         builder.Services.AddScoped<IRepositorioCompra, RepositorioCompraEmOrm>();
         builder.Services.AddScoped<ClienteAppService>();
+        builder.Services.AddScoped<ProdutoAppService>();
 
         builder.Services.AddEntityFrameworkConfig(builder.Configuration);
 

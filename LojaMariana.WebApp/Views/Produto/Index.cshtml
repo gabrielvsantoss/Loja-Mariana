@@ -1,5 +1,137 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<LojaMariana.WebApp.Models.ProdutoIndexViewModel>
 @{
+    ViewBag.Titulo = "Produtos - Finesie Boutique";
 }
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Titulo</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body, html {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #ffe4e1, #fff0f5);
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-custom {
+            background-color: #ffb6c1;
+            padding: 1rem 2rem;
+        }
+
+            .navbar-custom .navbar-brand,
+            .navbar-custom .btn-custom {
+                color: #800040 !important;
+            }
+
+        .btn-custom {
+            background-color: #ffc0cb;
+            color: #800040;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #ff99aa;
+            }
+
+        .card {
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(255, 192, 203, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #ffc0cb;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 25px rgba(255, 192, 203, 0.7);
+            }
+
+            .card i {
+                font-size: 2rem;
+                color: #800040;
+            }
+
+            .card h5, .card p {
+                color: #800040;
+            }
+
+        .container-content {
+            margin-top: 120px;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="#">Finesie</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Produto" asp-action="Index">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Venda" asp-action="Index">Vendas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container container-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Produtos</h2>
+            <a asp-action="Cadastrar" class="btn btn-custom">Cadastrar Produto</a>
+        </div>
+
+        <div class="row">
+            @foreach (var p in Model)
+            {
+                <div class="col-md-4 mb-3">
+                    <div class="card p-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#800040" class="cliente-icon" viewBox="0 0 64 64">
+                            <path d="M32 2C30 2 28 6 28 10v8H18l-4 32h36l-4-32H36v-8c0-4-2-8-4-8zm0 4c1 0 2 2 2 4v8H30V10c0-2 1-4 2-4zm-8 12h16l3 24H21l3-24zm-3 26h22l-2 12H31l-2-12z" />
+                        </svg>
+
+                        <h5 class="mt-2">@p.Nome</h5>
+                        <p><strong>Preço:</strong> R$ @p.Preco</p>
+                        <p><strong>Tamanho:</strong> @p.Tamanho</p>
+                        <p><strong>Categoria:</strong> @p.Categoria</p>
+                        <p><strong>Estoque:</strong> @p.QuantidadeEstoque</p>
+                        <p><strong>Código Live:</strong> @p.CodigoLive</p>
+                        <div class="d-flex justify-content-between mt-2">
+                            <a asp-action="Editar" asp-route-id="@p.Id" class="btn btn-sm btn-custom">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <a asp-action="Excluir" asp-route-id="@p.Id" class="btn btn-sm btn-custom">
+                                <i class="bi bi-trash"></i> Excluir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

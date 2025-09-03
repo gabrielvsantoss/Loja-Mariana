@@ -22,6 +22,12 @@
             padding: 1rem 2rem; /* Altura maior */
         }
 
+        a.sem-estilo {
+            color: inherit; /* Herdar a cor do texto do filho */
+            text-decoration: none; /* Remove sublinhado */
+        }
+
+       
             .navbar-custom .navbar-brand {
                 font-size: 2rem; /* Marca maior */
                 color: #800040 !important;
@@ -183,17 +189,21 @@
 
     
     <div class="container feature-cards">
+
+        <a href="produtos" class="sem-estilo">
         <div class="feature-card">
             <i class="bi bi-box-seam"></i>
-            <h5>Estoque</h5>
+            <h5>Produtos</h5>
             <p>Gerencie produtos e quantidades facilmente.</p>
         </div>
-        <a href="clientes">
-        <div class="feature-card">
-            <i class="bi bi-person-badge"></i>
-            <h5>Clientes</h5>
-            <p>Acompanhe o histórico individual de cada cliente.</p>
-        </div>
+        </a>
+
+        <a href="clientes" class="sem-estilo">
+            <div class="feature-card">
+                <i class="bi bi-person-badge"></i>
+                <h5>Clientes</h5>
+                <p>Acompanhe o histórico individual de cada cliente.</p>
+            </div>
         </a>
         <div class="feature-card">
             <i class="bi bi-currency-dollar"></i>

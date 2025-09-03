@@ -1,5 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LojaMariana.WebApp.Models.ExcluirClienteViewModel
+
 @{
+    <h1 class="text-pink">@ViewBag.Titulo</h1> 
 }
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Titulo</title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #ffe4e1, #fff0f5);
+            padding-top: 100px;
+        }
+
+        .form-container {
+            background-color: #ffc0cb;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 10px 25px rgba(255,192,203,0.5);
+            text-align: center;
+        }
+
+        .btn-custom {
+            background-color: #ffb6c1;
+            color: #800040;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #ff99aa;
+                transform: scale(1.05);
+            }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="mb-4">Excluir Cliente</h2>
+        <p>Tem certeza que deseja excluir o cliente <strong>@Model.Nome</strong>?</p>
+
+        <form asp-action="Excluir" method="post">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-custom"><i class="bi bi-trash"></i> Confirmar Exclusão</button>
+            <a asp-action="Index" class="btn btn-custom ms-2">Cancelar</a>
+        </form>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

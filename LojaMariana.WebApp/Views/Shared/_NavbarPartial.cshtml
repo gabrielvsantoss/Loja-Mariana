@@ -1,13 +1,19 @@
-﻿@{
+﻿@* @{
     var rotaGenerosFilmeAtiva = ViewContext.HttpContext.Request.Path.StartsWithSegments("/generos-filme") ? "btn btn-primary px-3" : "nav-link text-primary fw-semibold";
     var rotaFilmesAtiva = ViewContext.HttpContext.Request.Path.StartsWithSegments("/filmes") ? "btn btn-primary px-3" : "nav-link text-primary fw-semibold";
     var rotaSalasAtiva = ViewContext.HttpContext.Request.Path.StartsWithSegments("/salas") ? "btn btn-primary px-3" : "nav-link text-primary fw-semibold";
     var rotaSessoesAtiva = ViewContext.HttpContext.Request.Path.StartsWithSegments("/sessoes") ? "btn btn-primary px-3" : "nav-link text-primary fw-semibold";
 }
 
+<style>
+    .navbar-brand-rosa {
+        color: #ff69b4 !important; /* rosa forte */
+    }
+</style>
+
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand fs-4 fw-bold" href="/">Controle de Cinema</a>
+        <a class="navbar-brand fs-4 fw-bold navbar-brand-rosa" href="/">Controle de Cinema</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,7 +31,7 @@
                         <a class="@rotaSalasAtiva" asp-controller="Sala" asp-action="Index">Salas</a>
                     </li>
                 }
-                
+
                 <li class="nav-item">
                     <a class="@rotaSessoesAtiva" asp-controller="Sessao" asp-action="Index">Sessões</a>
                 </li>
@@ -47,3 +53,4 @@
         </div>
     </div>
 </nav>
+ *@
