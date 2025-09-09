@@ -39,4 +39,18 @@ public class AutenticacaoService
 
         return Result.Ok();
     }
+
+    public async Task<Result> LoginAsync(string email, string senha)
+    {
+       var resultadoLogin = await SignInManager.PasswordSignInAsync
+            (
+                email, senha, isPersistent : true, lockoutOnFailure : false
+            );
+
+        if (resultadoLogin.Succeeded)
+            return Result.Ok();
+
+        return Result.Fail("Login falhou");
+
+    }
 }

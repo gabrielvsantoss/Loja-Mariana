@@ -30,7 +30,16 @@ namespace LojaMariana.WebApp.Controllers
         [HttpPost("login")]
         public IActionResult LoginPost(LoginViewModel loginVM)
         {
-            return View();
+            var resultado = autenticacaoService.LoginAsync
+                (
+                    loginVM.Email ?? string.Empty, loginVM.Senha ?? string.Empty
+                );
+
+            if (resultado.Result.IsSuccess)
+                return RedirectToAction("Index", "Home");
+
+            else
+                return RedirectToAction(nameof(Login));
         }
 
         [HttpGet("registro")]
@@ -44,7 +53,7 @@ namespace LojaMariana.WebApp.Controllers
         {
             var usuario = new Usuario
             {
-                UserName = registroVM.Email,
+                UserName = registroVM.Email,    
                 Email = registroVM.Email
             };
             var resultado = await autenticacaoService.RegistrarAsync
