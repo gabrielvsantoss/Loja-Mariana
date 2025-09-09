@@ -1,5 +1,195 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LojaMariana.WebApp.Models.CompraIndexViewModel
 @{
+    ViewBag.Titulo = "Compras - Finesie Boutique";
 }
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Titulo</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(160deg, #ffe4e1, #fff0f5);
+        }
+
+        .navbar-custom {
+            background-color: #ffb6c1;
+            padding: 1rem 2rem;
+        }
+
+            .navbar-custom .navbar-brand {
+                font-size: 2rem;
+                color: #800040 !important;
+            }
+
+        .btn-custom {
+            background-color: #ffc0cb;
+            color: #800040;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #ff99aa;
+                transform: scale(1.05);
+            }
+
+        .container-content {
+            margin-top: 120px;
+        }
+
+        .compra-card {
+            background-color: #ffc0cb;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(255, 192, 203, 0.5);
+            margin-bottom: 20px;
+        }
+
+            .compra-card h5 {
+                color: #800040;
+                font-weight: 700;
+            }
+
+            .compra-card p {
+                color: #800040;
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fs-4 fw-bold" href="/">Finesie</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Produto" asp-action="Index">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Compra" asp-action="Index">Compras</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container container-content">
+        <div class="d-flex justify-content-between mb-4">
+            <h2>Vendas Por Mes</h2>
+            <a href="@Url.Action("Cadastrar","Compra")" class="btn btn-custom">Nova Venda</a>
+        </div>
+
+        @{
+            var vendasPorMes = Model.Compras
+                .GroupBy(c => new { c.Data.Year, c.Data.Month })
+                .Select(g => new {
+                    Mes = new DateTime(g.Key.Year, g.Key.Month, 1),
+                    Quantidade = g.Count(),
+                    ValorTotal = g.Sum(x => x.ValorTotal)
+                })
+                .OrderBy(x => x.Mes)
+                .ToList();
+        }
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th>Mês</th>
+                    <th>Quantidade de Vendas</th>
+                    <th>Valor Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in vendasPorMes)
+                {
+                    <tr>
+                        <td>@item.Mes.ToString("MM/yyyy")</td>
+                        <td>@item.Quantidade</td>
+                        <td>R$ @item.ValorTotal</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="my-5">
+            <canvas id="graficoVendas"></canvas>
+        </div>
+
+        <div class="row">
+            <h2>Vendas Totais</h2>
+            @foreach (var compra in Model.Compras)
+            {
+                <div class="col-md-4">
+                    <div class="compra-card">
+                        <h5><i class="bi bi-cart-check"></i> @compra.ClienteNome</h5>
+                        <p><strong>Data:</strong> @compra.Data.ToShortDateString()</p>
+                        <p><strong>Valor Total:</strong> R$ @compra.ValorTotal</p>
+                        <p><strong>Produtos:</strong> @string.Join(", ", compra.Produtos)</p>
+
+                        <div class="mt-3">
+                            <a asp-action="Excluir" asp-route-id="@compra.Id" class="btn btn-sm btn-custom">
+                                <i class="bi bi-trash"></i> Excluir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('graficoVendas');
+
+        const labels = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+            vendasPorMes.Select(v => v.Mes.ToString("MM/yyyy"))
+        ));
+
+        const data = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(
+            vendasPorMes.Select(v => v.ValorTotal)
+        ));
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Vendas por Mês (R$)',
+                    data: data,
+                    borderWidth: 1,
+                    backgroundColor: '#ff99aa'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

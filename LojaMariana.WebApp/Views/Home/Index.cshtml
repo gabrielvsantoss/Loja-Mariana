@@ -16,56 +16,54 @@
             background: linear-gradient(160deg, #ffe4e1, #fff0f5);
         }
 
-        /* Navbar maior e estilizada */
         .navbar-custom {
             background-color: #ffb6c1;
-            padding: 1rem 2rem; /* Altura maior */
+            padding: 1rem 2rem; 
         }
 
         a.sem-estilo {
-            color: inherit; /* Herdar a cor do texto do filho */
-            text-decoration: none; /* Remove sublinhado */
+            color: inherit; 
+            text-decoration: none; 
         }
 
        
-            .navbar-custom .navbar-brand {
-                font-size: 2rem; /* Marca maior */
-                color: #800040 !important;
-            }
+        .navbar-custom .navbar-brand {
+            font-size: 2rem; 
+            color: #800040 !important;
+        }
 
-            .navbar-custom .nav-link,
-            .navbar-custom .btn-custom {
-                color: #800040 !important;
-                font-size: 1.1rem; /* Botões da navbar maiores */
-                font-weight: 600;
-                padding: 0.75rem 1.5rem;
-            }
+        .navbar-custom .nav-link,
+        .navbar-custom .btn-custom {
+            color: #800040 !important;
+            font-size: 1.1rem; 
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+        }
 
-                .navbar-custom .nav-link:hover,
-                .navbar-custom .btn-custom:hover {
-                    color: #d63384 !important;
-                }
+        .navbar-custom .nav-link:hover,
+        .navbar-custom .btn-custom:hover {
+            color: #d63384 !important;
+        }
 
         .btn-custom {
             background-color: #ffc0cb;
             color: #800040;
             font-weight: 600;
             border-radius: 12px;
-            padding: 0.75rem 1.5rem; /* Botões maiores */
+            padding: 0.75rem 1.5rem;
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
 
-            .btn-custom:hover {
-                background-color: #ff99aa;
-                transform: scale(1.05);
-            }
+        .btn-custom:hover {
+            background-color: #ff99aa;
+            transform: scale(1.05);
+        }
 
-        /* Hero Section */
         .hero-section {
             background: linear-gradient(to bottom right, #ffe4e1, #ffccd5, #fff0f5);
             border-radius: 20px;
-            padding: 60px 40px; /* Padding maior para balancear com a imagem e os botões */
+            padding: 60px 40px;
             margin: 100px 20px 50px;
         }
 
@@ -78,12 +76,12 @@
 
         .hero-text p {
             color: #800040;
-            font-size: 1.4rem; /* Texto maior e mais legível */
+            font-size: 1.4rem;
             margin-bottom: 35px;
         }
 
         .hero-section .btn-group .btn-custom {
-            font-size: 1.2rem; /* Botões maiores */
+            font-size: 1.2rem; 
             padding: 0.75rem 2rem;
             border-radius: 14px;
         }
@@ -95,7 +93,6 @@
             box-shadow: 0 10px 25px rgba(255, 192, 203, 0.5);
         }
 
-        /* Feature Cards */
         .feature-cards {
             display: flex;
             justify-content: center;
@@ -114,29 +111,28 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-            .feature-card:hover {
-                transform: translateY(-10px);
-                box-shadow: 0 15px 25px rgba(255, 192, 203, 0.7);
-            }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(255, 192, 203, 0.7);
+        }
 
-            .feature-card i {
-                font-size: 2rem;
-                color: #800040;
-                margin-bottom: 10px;
-            }
+        .feature-card i {
+            font-size: 2rem;
+            color: #800040;
+            margin-bottom: 10px;
+        }
 
-            .feature-card h5 {
-                color: #800040;
-                font-weight: 700;
-                margin-bottom: 5px;
-            }
+        .feature-card h5 {
+            color: #800040;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
 
-            .feature-card p {
-                color: #800040;
-                font-size: 0.9rem;
-            }
+        .feature-card p {
+            color: #800040;
+            font-size: 0.9rem;
+        }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 20px;
@@ -147,10 +143,9 @@
 </head>
 <body>
 
-    <!-- Navbar fixa -->
     <nav class="navbar navbar-expand-lg navbar-custom shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand fs-4 fw-bold" href="#">Finesie</a>
+            <a class="navbar-brand fs-4 fw-bold" href="/">Finesie</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -164,7 +159,7 @@
                         <a class="btn btn-custom" asp-controller="Produto" asp-action="Index">Produtos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-custom" asp-controller="Venda" asp-action="Index">Vendas</a>
+                        <a class="btn btn-custom" asp-controller="Compra" asp-action="Index">Vendas</a>
                     </li>
                 </ul>
             </div>
@@ -176,9 +171,9 @@
             <div class="col-md-7 hero-text">
                 <h1>Bem-vinda ao controle da Finesie Boutique!</h1>
                 <p>No controle da Finesie, cuidamos do seu estoque de produtos, acompanhamos o histórico de compras dos clientes e ajudamos você a gerenciar suas vendas de forma simples e prática. Tudo pensado para deixar sua boutique mais organizada e charmosa.</p>
-                <div class="btn-group">
+                <div class="btn-group gap-3" >
                     <a href="#" class="btn btn-custom">Saiba Mais</a>
-                    <a href="#" class="btn btn-custom">Ver Produtos</a>
+                    <a href="produtos" class="btn btn-custom">Ver meus Produtos</a>
                 </div>
             </div>
             <div class="col-md-5 hero-image text-end d-none d-md-block">
@@ -205,11 +200,14 @@
                 <p>Acompanhe o histórico individual de cada cliente.</p>
             </div>
         </a>
+
+        <a href="compras" class="sem-estilo">
         <div class="feature-card">
             <i class="bi bi-currency-dollar"></i>
             <h5>Vendas</h5>
             <p>Registre vendas e consulte relatórios em tempo real.</p>
         </div>
+         </a>
     </div>
 
     <footer>

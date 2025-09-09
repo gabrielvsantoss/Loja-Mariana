@@ -1,15 +1,17 @@
 ﻿using LojaMariana.Dominio.Compartilhado;
+using LojaMariana.Dominio.ModuloAutenticacao;
 using LojaMariana.Dominio.ModuloCliente;
 using LojaMariana.Dominio.ModuloCompra;
 using LojaMariana.Dominio.ModuloProduto;
 using LojaMariana.Infraestrutura.Orm.ModuloCliente;
 using LojaMariana.Infraestrutura.Orm.ModuloCompra;
 using LojaMariana.Infraestrutura.Orm.ModuloProduto;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LojaMariana.Infraestrutura.Orm.Compartilhado
 {
-    public class lojaMarianaDbContext : DbContext, IUnitOfWork
+    public class lojaMarianaDbContext : IdentityDbContext<Usuario, Cargo, Guid>, IUnitOfWork
     {
         public DbSet<Compra> Compras { get; set; }
         public DbSet<Cliente> Clientes { get; set; }

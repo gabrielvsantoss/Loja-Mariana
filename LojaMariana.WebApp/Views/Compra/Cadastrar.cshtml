@@ -1,5 +1,80 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LojaMariana.WebApp.Models.CadastrarCompraViewModel
 @{
+    ViewBag.Titulo = "Cadastrar Compra - Finesie Boutique";
+    var clientes = ViewBag.Clientes as List<LojaMariana.Dominio.ModuloCliente.Cliente>;
+    var produtos = ViewBag.Produtos as List<LojaMariana.Dominio.ModuloProduto.Produto>;
 }
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Titulo</title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background: linear-gradient(160deg, #ffe4e1, #fff0f5);
+        }
+
+        .form-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(255,192,203,0.5);
+            margin-top: 120px;
+        }
+
+        .btn-custom {
+            background-color: #ffc0cb;
+            color: #800040;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <h2 class="mb-4">Nova Compra</h2>
+
+            <form asp-action="Cadastrar" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Cliente</label>
+                    <select asp-for="ClienteId" class="form-control" required>
+                        <option value="">Selecione</option>
+                        @foreach (var cliente in clientes)
+                        {
+                            <option value="@cliente.Id">@cliente.Nome</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Produtos</label>
+                    <select asp-for="ProdutosIds" class="form-control" multiple size="6" required>
+                        @foreach (var produto in produtos)
+                        {
+                            <option value="@produto.Id">@produto.Nome - R$ @produto.Preco</option>
+                        }
+                    </select>
+                    <small class="text-muted">Segure CTRL (ou CMD) para selecionar vários.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Data da Compra</label>
+                    <input asp-for="Data" class="form-control" type="date" required />
+                </div>
+
+
+                <button type="submit" class="btn btn-custom">Salvar Compra</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+

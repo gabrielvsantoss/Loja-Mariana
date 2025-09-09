@@ -19,11 +19,10 @@ public class Compra : EntidadeBase<Compra>
     {
         Id = Guid.NewGuid();
         ValorTotal = valorTotal;
-        Data = data;
+        Data = DateTime.SpecifyKind(data, DateTimeKind.Utc);
         Cliente = cliente;
         Produtos = produtos ?? new List<Produto>();
     }
-
     public override void AtualizarRegistro(Compra registroEditado)
     {
         ValorTotal = registroEditado.ValorTotal;

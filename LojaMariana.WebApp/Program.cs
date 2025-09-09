@@ -12,6 +12,8 @@ using LojaMariana.Aplicacao.ModuloCliente;
 using LojaMariana.Dominio.Compartilhado;
 using LojaMariana.Infraestrutura.Orm.Compartilhado;
 using LojaMariana.Aplicacao.ModuloProduto;
+using LojaMariana.Aplicacao.ModuloCompra;
+using LojaMariana.Aplicacao.ModuloAutenticacao;
 namespace Duobingo.WebApp;
 
 public class Program
@@ -33,13 +35,17 @@ public class Program
         builder.Services.AddScoped<IRepositorioCompra, RepositorioCompraEmOrm>();
         builder.Services.AddScoped<ClienteAppService>();
         builder.Services.AddScoped<ProdutoAppService>();
+        builder.Services.AddScoped<CompraAppService>();
+        builder.Services.AddScoped<AutenticacaoService>();
+
+        builder.Services.AddIndentyProviderConfig();
+        builder.Services.AddCookieAuthenticationConfig();
 
         builder.Services.AddEntityFrameworkConfig(builder.Configuration);
 
         builder.Services.AddSerilogConfig(builder.Logging);
         var app = builder.Build();
 
-        //Migra??es do banco
 
 
         app.UseExceptionHandler("/Erro");

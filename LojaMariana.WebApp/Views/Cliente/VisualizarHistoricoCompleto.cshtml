@@ -1,5 +1,134 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LojaMariana.WebApp.Models.HistoricoClienteViewModel
 @{
+    ViewBag.Titulo = "Histórico da Cliente - Finesie Boutique";
 }
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Titulo</title>
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fff0f5;
+        }
+
+        .navbar-custom {
+            background-color: #ffb6c1;
+            padding: 1rem 2rem;
+        }
+
+            .navbar-custom .navbar-brand {
+                font-size: 2rem;
+                color: #800040 !important;
+            }
+
+        .btn-custom {
+            background-color: #ffc0cb;
+            color: #800040;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+            .btn-custom:hover {
+                background-color: #ff99aa;
+                transform: scale(1.05);
+            }
+
+        .container-content {
+            margin-top: 120px;
+            margin-bottom: 50px;
+        }
+
+        .chart-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .chart-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #800040;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">Finesie</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto gap-2">
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Produto" asp-action="Index">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-custom" asp-controller="Compra" asp-action="Index">Compras</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container container-content">
+        <h2 class="mb-4">Histórico da Cliente</h2>
+
+        <div class="row">
+            <div class="col-md-4 chart-container">
+                <div class="chart-title">Categoria que mais comprou</div>
+                <canvas id="chartCategoria"></canvas>
+            </div>
+            <div class="col-md-4 chart-container">
+                <div class="chart-title">Dia com mais compras</div>
+                <canvas id="chartDia"></canvas>
+            </div>
+            <div class="col-md-4 chart-container">
+                <div class="chart-title">Tamanho mais comprado</div>
+                <canvas id="chartTamanho"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function createPieChart(elementId, label, value) {
+            const ctx = document.getElementById(elementId).getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [label, 'Outros'],
+                    datasets: [{
+                        data: [value, 100 - value],
+                        backgroundColor: ['#FF6384', '#DDDDDD']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+        }
+
+        createPieChart('chartCategoria', '@Model.CategoriaLabel', @Model.CategoriaValor);
+        createPieChart('chartDia', '@Model.DiaLabel', @Model.DiaValor);
+        createPieChart('chartTamanho', '@Model.TamanhoLabel', @Model.TamanhoValor);
+    </script>
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

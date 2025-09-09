@@ -58,6 +58,7 @@ namespace LojaMariana.WebApp.Models
         public Guid Id { get; set; }
         public string Nome { get; set; }
 
+        public ExcluirProdutoViewModel() { }
         public ExcluirProdutoViewModel(Guid id, string nome)
         {
             Id = id;
